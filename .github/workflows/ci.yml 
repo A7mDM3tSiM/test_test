@@ -11,5 +11,25 @@ on:
         - master
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+    test:
+        runs-on: ubuntu-latest
+
+    steps:
+        # Checkout the repository
+        - name: Checkout code
+            uses: actions/checkout@v3
+
+        # Set up Flutter environment
+        - name: Set up Flutter
+            uses: subosito/flutter-action@v2
+            with:
+            flutter-version: 'stable'
+
+        # Install dependencies
+        - name: Install dependencies
+            run: flutter pub get
+
+        # Run the tests
+        - name: Run tests
+            run: flutter test
+
